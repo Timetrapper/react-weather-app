@@ -30,3 +30,24 @@
     transform: rotate(360deg);
   }
 }
+
+li {
+  list-style-type: none;
+}
+
+table,
+th,
+td {
+  border: none !important;
+}
+
+.footer {
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+  background-color: #f5f5f5;
+}
+
+.spacer {
+  height: 20px;
+}
