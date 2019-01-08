@@ -6,7 +6,6 @@ import BuildForecast from "./BuildForcast.js";
 import Footer from "./Footer";
 
 const axios = require("axios");
-//let citySelected = "";
 
 class App extends Component {
   constructor(props) {
@@ -15,23 +14,17 @@ class App extends Component {
     this.state = {
       weather: [],
       haveCity: false,
-      citySelected: ''
+      citySelected: ""
     };
 
     this.handler = this.handler.bind(this);
   }
 
-  createYahooWeatherUrl() {
-    //let city = citySelected;
-    let url =
-      "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D'" +
-      this.state.citySelected +
-      "')and%20u='c'&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
-    return url;
-  }
-
   getWeather() {
-    const url = this.createYahooWeatherUrl();
+    const url = 
+    "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D'" +
+    this.state.citySelected +
+    "')and%20u='c'&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys";
 
     axios
       .get(url)
@@ -45,7 +38,7 @@ class App extends Component {
   }
 
   handler(city) {
-    this.setState({citySelected: city}, () => this.getWeather);
+    this.setState({ citySelected: city }, () => this.getWeather());
   }
 
   render() {

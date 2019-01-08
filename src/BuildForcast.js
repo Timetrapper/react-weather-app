@@ -14,97 +14,100 @@ import UnexpectedConditionsIcon from "./weather-icons/unexpected.png";
 
 class BuildForecast extends Component {
   iconSelector(condition) {
-    let icon = "";
+    let icon = {};
     let name = "";
-    let conditionLowerCase = condition.toLowerCase();
+    condition = condition.toLowerCase();
 
     if (
-      conditionLowerCase === "cloudy" ||
-      conditionLowerCase === "partly cloudy" ||
-      conditionLowerCase === "dust" ||
-      conditionLowerCase === "foggy" ||
-      conditionLowerCase === "haze" ||
-      conditionLowerCase === "smoky" ||
-      conditionLowerCase === "mostly cloudy" ||
-      conditionLowerCase === "mostly cloudy (day)" ||
-      conditionLowerCase === "partly cloudy (day)" ||
-      conditionLowerCase === "partly cloudy"
+      condition === "cloudy" ||
+      condition === "partly cloudy" ||
+      condition === "dust" ||
+      condition === "foggy" ||
+      condition === "haze" ||
+      condition === "smoky" ||
+      condition === "mostly cloudy" ||
+      condition === "mostly cloudy (day)" ||
+      condition === "partly cloudy (day)" ||
+      condition === "partly cloudy"
     ) {
       icon = CloudIcon;
       name = "cloudy";
     } else if (
-      conditionLowerCase === "stormy" ||
-      conditionLowerCase === "isolated thundershowers" ||
-      conditionLowerCase === "thundershowers" ||
-      conditionLowerCase === "isolated thunderstorms" ||
-      conditionLowerCase === "scattered thunderstorms" ||
-      conditionLowerCase === "mixed rain and hail" ||
-      conditionLowerCase === "tropical storm" ||
-      conditionLowerCase === "hurricane" ||
-      conditionLowerCase === "severe thunderstorms" ||
-      conditionLowerCase === "thunderstorms"
+      condition === "stormy" ||
+      condition === "isolated thundershowers" ||
+      condition === "thundershowers" ||
+      condition === "isolated thunderstorms" ||
+      condition === "scattered thunderstorms" ||
+      condition === "mixed rain and hail" ||
+      condition === "tropical storm" ||
+      condition === "hurricane" ||
+      condition === "severe thunderstorms" ||
+      condition === "thunderstorms"
     ) {
       icon = StormIcon;
       name = "storm";
-    } else if (conditionLowerCase === "cold") {
+    } else if (condition === "cold") {
       icon = ColdIcon;
       name = "cold";
-    } else if (conditionLowerCase === "hot") {
+    } else if (condition === "hot") {
       icon = HotIcon;
       name = "hot";
     } else if (
-      conditionLowerCase === "rain" ||
-      conditionLowerCase === "freezing drizzle" ||
-      conditionLowerCase === "drizzle" ||
-      conditionLowerCase === "freezing rain" ||
-      conditionLowerCase === "showers" ||
-      conditionLowerCase === "scattered showers"
+      condition === "rain" ||
+      condition === "freezing drizzle" ||
+      condition === "drizzle" ||
+      condition === "freezing rain" ||
+      condition === "showers" ||
+      condition === "scattered showers"
     ) {
       icon = RainIcon;
       name = "rainy";
     } else if (
-      conditionLowerCase === "sun" ||
-      conditionLowerCase === "sunny" ||
-      conditionLowerCase === "fair (day)" ||
-      conditionLowerCase === "partly sunny" ||
-      conditionLowerCase === "mostly sunny"
+      condition === "sun" ||
+      condition === "sunny" ||
+      condition === "fair (day)" ||
+      condition === "partly sunny" ||
+      condition === "mostly sunny"
     ) {
       icon = SunIcon;
       name = "sunny";
     } else if (
-      conditionLowerCase === "rain and snow" ||
-      conditionLowerCase === "mixed rain and snow" ||
-      conditionLowerCase === "mixed rain and sleet" ||
-      conditionLowerCase === "mixed snow and sleet" ||
-      conditionLowerCase === "snow" ||
-      conditionLowerCase === "hail" ||
-      conditionLowerCase === "light snow showers" ||
-      conditionLowerCase === "blowing snow" ||
-      conditionLowerCase === "sleet" ||
-      conditionLowerCase === "heavy snow" ||
-      conditionLowerCase === "scattered snow showers" ||
-      conditionLowerCase === "snow showers"
+      condition === "rain and snow" ||
+      condition === "mixed rain and snow" ||
+      condition === "mixed rain and sleet" ||
+      condition === "mixed snow and sleet" ||
+      condition === "snow" ||
+      condition === "hail" ||
+      condition === "light snow showers" ||
+      condition === "blowing snow" ||
+      condition === "sleet" ||
+      condition === "heavy snow" ||
+      condition === "scattered snow showers" ||
+      condition === "snow showers"
     ) {
       icon = SnowIcon;
       name = "snow";
     } else if (
-      conditionLowerCase === "wind" ||
-      conditionLowerCase === "high wind" ||
-      conditionLowerCase === "tornado" ||
-      conditionLowerCase === "blustery" ||
-      conditionLowerCase === "windy"
+      condition === "wind" ||
+      condition === "high wind" ||
+      condition === "tornado" ||
+      condition === "blustery" ||
+      condition === "windy"
     ) {
       icon = WindIcon;
       name = "wind";
     } else if (
-      conditionLowerCase === "mostly cloudy (night)" ||
-      conditionLowerCase === "partly cloudy (night)"
+      condition === "mostly cloudy (night)" ||
+      condition === "partly cloudy (night)"
     ) {
       icon = NightCloudyIcon;
       name = "night-cloudy";
     } else if (
-      conditionLowerCase === "clear (night)" ||
-      conditionLowerCase === "fair (night)"
+      condition === "clear (night)" ||
+      condition === "fair (night)" ||
+      condition === "clear" ||
+      condition === "mostly clear" ||
+      condition === "fair"
     ) {
       icon = NightFairIcon;
       name = "night-fair";
@@ -183,8 +186,7 @@ class BuildForecast extends Component {
                   <tr align='left'>
                     <td>
                       <b>High: {day.high} &#176;C</b>
-                    </td>
-                    <td>
+                      <br/>
                       <b>Low: {day.low} &#176;C</b>
                     </td>
                   </tr>
@@ -198,13 +200,10 @@ class BuildForecast extends Component {
   }
 
   render() {
-    let currentConditions = this.currentConditionsBuilder();
-    let forecastedConditions = this.forecastedConditionsBuilder();
-
     return (
       <div className='forecast'>
-        {currentConditions}
-        {forecastedConditions}
+        {this.currentConditionsBuilder()}
+        {this.forecastedConditionsBuilder()}
       </div>
     );
   }
